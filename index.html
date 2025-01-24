@@ -1,0 +1,501 @@
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        @font-face {
+            font-family: 'Pacifico';
+            src: url('https://fonts.gstatic.com/s/pacifico/v17/FwZY7-Qmy14u9lezJ-6H6Mk.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .animate-text {
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #9b00e8, #00c6ff);
+            background-size: 200% 200%;
+            animation: text 5s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes text {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hover-animate {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .hover-animate:hover {
+            transform: scale(1.05);
+            opacity: 0.85;
+        }
+        .hover-text-animate {
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease-in-out;
+        }
+        .hover-text-animate::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #9b00e8, #00c6ff);
+            transition: transform 0.3s ease-in-out;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+        .hover-text-animate:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .skill-item {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border: 2px solid transparent;
+            border-radius: 9999px;
+            background: #2d3748;
+            color: white;
+            font-size: 1.25rem;
+            transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
+        }
+        .skill-item:hover {
+            background-color: #4a5568;
+            border-color: white;
+            transform: translateY(-5px);
+        }
+        .appear-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .appear-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hover-name {
+            transition: color 0.3s ease-in-out;
+        }
+        .hover-name:hover {
+            color: #ff8a00;
+        }
+        .top-bar {
+            background: linear-gradient(29.5644deg, rgb(30, 58, 138), rgb(59, 130, 246));
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s ease-in-out;
+        }
+        .experience-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .experience-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .experience-item:hover {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background-color: #4a5568;
+            transform: translateY(-5px);
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            background-color: #ff8a00;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .contact-card {
+            background: linear-gradient(135deg, #ff8a00, #e52e71, #9b00e8, #00c6ff);
+            background-size: 200% 200%;
+            animation: gradient 5s ease infinite;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .contact-card:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        @keyframes gradient {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center">
+    <!-- Top Bar -->
+    <div class="w-full top-bar p-4 flex justify-between items-center relative overflow-hidden">
+        <div class="flex items-center space-x-4">
+            <img alt="Profile picture" class="w-10 h-10 rounded-full" height="40" src="https://i.scdn.co/image/ab67616d0000b273530de52a8d10f0a270ed4a13" width="40"/>
+            <div class="text-2xl font-bold hover-name">
+                DERTY
+            </div>
+        </div>
+        <a class="text-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 px-4 rounded-full hover:opacity-90 transition-opacity duration-300" href="#projects" id="scrollToProjects">
+            My Projects
+        </a>
+    </div>
+    <div class="w-full max-w-4xl mx-auto p-8 space-y-24" id="app">
+        <!-- Introduction Section -->
+        <section class="appear-animation text-center space-y-4">
+            <div class="text-4xl sm:text-5xl font-pacifico animate-text hover-text-animate">
+                Hi, I'm a Developer
+            </div>
+            <p class="text-lg sm:text-xl text-gray-400">
+                Hi I'm Derty And I code in my free time
+            </p>
+        </section>
+        <!-- Skills Section -->
+        <section class="appear-animation space-y-8 bg-gray-800 p-8 rounded-lg">
+            <h2 class="text-2xl sm:text-3xl font-semibold text-center">
+                Skills
+            </h2>
+            <div class="flex flex-wrap justify-center">
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fab fa-java"></i>
+                    <span>Java</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fas fa-cogs"></i>
+                    <span>Bukkit Development</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fas fa-code"></i>
+                    <span>C</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fas fa-code"></i>
+                    <span>C++</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fas fa-database"></i>
+                    <span>MongoDB</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fas fa-memory"></i>
+                    <span>Redis</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fas fa-file-alt"></i>
+                    <span>YAML</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fas fa-database"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-item flex items-center space-x-2">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+            </div>
+        </section>
+        <!-- Past Experience Section -->
+        <section class="appear-animation space-y-8">
+            <h2 class="text-2xl sm:text-3xl font-semibold text-center">
+             Past Experience
+            </h2>
+            <div class="space-y-4">
+             <h3 class="text-xl sm:text-2xl font-semibold">
+              Past Staff Experience
+             </h3>
+             <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+              <img alt="Solara Network" class="company-logo" height="50" src="assets/images/solara.webp" width="50"/>
+              <div>
+               <h4 class="text-lg font-semibold">
+                Solara Network
+               </h4>
+               <p class="text-gray-400">
+                Role: Moderator
+               </p>
+               <p class="text-gray-400">
+                Duration: 2024 - Now
+               </p>
+               <p class="text-gray-400">
+                Description: Staffing...
+               </p>
+              </div>
+             </div>
+             <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+              <img alt="AcentraMC" class="company-logo" height="50" src="assets/images/acentra.png" width="50"/>
+              <div>
+               <h4 class="text-lg font-semibold">
+                AcentraMC Network
+               </h4>
+               <p class="text-gray-400">
+                Role: Admin
+               </p>
+               <p class="text-gray-400">
+                Duration: 2022-2023
+               </p>
+               <p class="text-gray-400">
+                Description: Staffing...
+               </p>
+              </div>
+             </div>
+             <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+              <img alt="Hexaland Logo" class="company-logo" height="50" src="assets/images/hexaland.webp" width="50"/>
+              <div>
+               <h4 class="text-lg font-semibold">
+                Hexaland Network
+               </h4>
+               <p class="text-gray-400">
+                Role: Moderator
+               </p>
+               <p class="text-gray-400">
+                Duration: 2023-Now
+               </p>
+               <p class="text-gray-400">
+                Description: Staffed
+               </p>
+              </div>
+             </div>
+             <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+              <img alt="Mistymc Logo" class="company-logo" height="50" src="assets/images/mistymc.webp" width="50"/>
+              <div>
+               <h4 class="text-lg font-semibold">
+                Mistymc
+               </h4>
+               <p class="text-gray-400">
+                Role: Helper
+               </p>
+               <p class="text-gray-400">
+                Duration: 2021-2022
+               </p>
+               <p class="text-gray-400">
+                Description: Assisted players...
+               </p>
+              </div>
+             </div>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xl sm:text-2xl font-semibold">
+                 Past Development Experience
+                </h3>
+                <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+                 <img alt="Exotic Network Logo" class="company-logo" height="50" src="assets/images/exotic.webp" width="50"/>
+                 <div>
+                  <h4 class="text-lg font-semibold">
+                   Exotic Network
+                  </h4>
+                  <p class="text-gray-400">
+                   Role: Developer
+                  </p>
+                  <p class="text-gray-400">
+                   Duration: 2024 - Present
+                  </p>
+                  <p class="text-gray-400">
+                   Description: Developed plugins...
+                  </p>
+                 </div>
+                </div>
+                <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+                 <img alt="Opium Network Logo" class="company-logo" height="50" src="https://i.scdn.co/image/ab67616d0000b273530de52a8d10f0a270ed4a13" width="50"/>
+                 <div>
+                  <h4 class="text-lg font-semibold">
+                   Opium Network
+                  </h4>
+                  <p class="text-gray-400">
+                   Role: Owner
+                  </p>
+                  <p class="text-gray-400">
+                   Duration: 2023-2024
+                  </p>
+                  <p class="text-gray-400">
+                   Description: Owner of the server, I developed the plugins...
+                  </p>
+                 </div>
+                </div>
+                <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+                 <img alt="Eaglite Logo" class="company-logo" height="50" src="assets/images/eaglite.webp" width="50"/>
+                 <div>
+                  <h4 class="text-lg font-semibold">
+                   Eaglite Network
+                  </h4>
+                  <p class="text-gray-400">
+                   Role: Owner 
+                  </p>
+                  <p class="text-gray-400">
+                   Duration: 2024-Now
+                  </p>
+                  <p class="text-gray-400">
+                   Description: Start as the lead of the development team, i coded most of the plugin...
+                  </p>
+                 </div>
+                </div>
+                <div class="experience-item bg-gray-800 p-4 rounded-lg shadow-md visible flex items-center">
+                 <img alt="Verse Logo" class="company-logo" height="50" src="assets/images/verse.png" width="50"/>
+                 <div>
+                  <h4 class="text-lg font-semibold">
+                   Verse Network
+                  </h4>
+                  <p class="text-gray-400">
+                   Role: Owner
+                  </p>
+                  <p class="text-gray-400">
+                   Duration: 2022-2023
+                  </p>
+                  <p class="text-gray-400">
+                   Description: Started as Lead developper, thanks to my skills i got owner
+                  </p>
+                 </div>
+                </div>
+               </div>
+        </section>
+        <!-- Projects Section -->
+        <section class="appear-animation space-y-8" id="projects">
+            <h2 class="text-2xl sm:text-3xl font-semibold text-center">
+                Projects
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md transition-transform duration-500 transform hover:scale-105 hover:shadow-2xl hover:bg-gray-700">
+                    <img alt="Eaglite core logo" class="w-full h-48 object-cover rounded-lg mb-4" height="400" src="assets/images/eaglite.webp" width="600"/>
+                    <div>
+                        <h4 class="text-lg font-semibold text-center">Eaglite Core</h4>
+                        <p class="text-gray-400 text-center">Eaglite is a fully customized minigame plugin designed to deliver an immersive and competitive UHC experience.this plugin incorporates advanced mechanics and systems to enhance the player's gameplay</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md transition-transform duration-500 transform hover:scale-105 hover:shadow-2xl hover:bg-gray-700">
+                    <img alt="Discord bot logo" class="w-full h-48 object-cover rounded-lg mb-4" height="400" src="assets/images/discordjs.webp" width="600"/>
+                    <div>
+                        <h4 class="text-lg font-semibold text-center">Discord Bot</h4>
+                        <p class="text-gray-400 text-center">A Discord bot coded in JavaScript that uses REST API to fetch data from a database, providing various functionalities to the server,Such as moderation commands or ingame stats and leaderboards.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md transition-transform duration-500 transform hover:scale-105 hover:shadow-2xl hover:bg-gray-700">
+                    <img alt="VerseCore plugin logo" class="w-full h-48 object-cover rounded-lg mb-4" height="400" src="assets/images/verse.png" width="600"/>
+                    <div>
+                        <h4 class="text-lg font-semibold text-center">VerseCore</h4>
+                        <p class="text-gray-400 text-center">A plugin made in java that includes features like bans, disguise, give ranks, create ranks with different method of data handling</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- Contact Information Section -->
+        <section class="appear-animation space-y-8 mt-16">
+            <h2 class="text-2xl sm:text-3xl font-semibold text-center">
+                Contact Information
+            </h2>
+            <div class="flex flex-wrap justify-center space-x-4">
+                <div class="contact-card hover-animate">
+                    <i class="fab fa-github contact-icon"></i>
+                    <div class="text-xl">GitHub</div>
+                    <div class="text-lg">@Trakser</div>
+                </div>
+                <div class="contact-card hover-animate">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div class="text-xl">Email</div>
+                    <div class="text-lg">trakser@verse.xyz</div>
+                </div>
+                <div class="contact-card hover-animate">
+                    <i class="fab fa-discord contact-icon"></i>
+                    <div class="text-xl">Discord</div>
+                    <div class="text-lg">derty.niere</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.appear-animation');
+            sections.forEach(section => {
+                setTimeout(() => {
+                    section.classList.add('visible');
+                }, 100);
+            });
+
+            const experienceItems = document.querySelectorAll('.experience-item');
+            experienceItems.forEach(item => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, 100);
+            });
+
+            const topBar = document.querySelector('.top-bar');
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth * 100;
+                const y = e.clientY / window.innerHeight * 100;
+                topBar.style.background = `linear-gradient(${x}deg, rgb(30, 58, 138), rgb(59, 130, 246))`;
+            });
+
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            const scrollToProjectsBtn = document.getElementById('scrollToProjects');
+            scrollToProjectsBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
